@@ -16,41 +16,43 @@ public class MeepMeepTesting {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(0, 0, Math.toRadians(90)))
-                .strafeTo(new Vector2d(0, 48))
-                .strafeTo(new Vector2d(0, 0))
+                .strafeToSplineHeading(new Vector2d(-48, -48), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(24, 24 * Math.sqrt(3)))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .splineToSplineHeading(new Pose2d(48, 48, Math.toRadians(90)), Math.PI / 2)
 
-                .strafeTo(new Vector2d(24 * Math.sqrt(3), 24))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .setReversed(true)
+                .splineTo(new Vector2d(24, 24), Math.PI / 2)
 
-                .strafeTo(new Vector2d(48, 0))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .setReversed(false)
+                .splineToConstantHeading(new Vector2d(0, 36), Math.PI / 2)
 
-                .strafeTo(new Vector2d(24 * Math.sqrt(3), -24))
-                .strafeTo(new Vector2d(0, 0))
+                .turnTo(Math.toRadians(180))
 
-                .strafeTo(new Vector2d(24, -24 * Math.sqrt(3)))
-                .strafeTo(new Vector2d(0, 0))
+                .splineTo(new Vector2d(-48, 48), Math.PI / 2)
 
-                .strafeTo(new Vector2d(0, -48))
-                .strafeTo(new Vector2d(0, 0))
+                .splineTo(new Vector2d(0, 0), Math.PI / 2)
 
-                .strafeTo(new Vector2d(-24, -24 * Math.sqrt(3)))
-                .strafeTo(new Vector2d(0, 0))
+                .strafeToSplineHeading(new Vector2d(-48, -48), Math.toRadians(0))
 
-                .strafeTo(new Vector2d(-24 * Math.sqrt(3), -24))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .splineToSplineHeading(new Pose2d(48, 48, Math.toRadians(90)), Math.PI / 2)
 
-                .strafeTo(new Vector2d(-48, 0))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .setReversed(true)
+                .splineTo(new Vector2d(24, 24), Math.PI / 2)
 
-                .strafeTo(new Vector2d(-24 * Math.sqrt(3), 24))
-                .strafeTo(new Vector2d(0, 0))
+                .setTangent(0)
+                .setReversed(false)
+                .splineToConstantHeading(new Vector2d(0, 36), Math.PI / 2)
 
-                .strafeTo(new Vector2d(-24, 24 * Math.sqrt(3)))
-                .strafeTo(new Vector2d(0, 0))
+                .turnTo(Math.toRadians(180))
+
+                .splineTo(new Vector2d(-48, 48), Math.PI / 2)
+
+                .splineTo(new Vector2d(0, 0), Math.PI / 2)
 
                 .build());
 
