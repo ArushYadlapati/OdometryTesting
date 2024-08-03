@@ -1,4 +1,4 @@
-# Road Runner Quickstart
+# Optii Odometry
 
-Check out the [docs](https://rr.brott.dev/docs/v1-0/tuning/).
+See [https://optiitech.com/products/optii-odometry](https://optiitech.com/products/optii-odometry)
 
