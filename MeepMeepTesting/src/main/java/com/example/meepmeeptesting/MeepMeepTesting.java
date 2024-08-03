@@ -1,25 +1,21 @@
-package org.firstinspires.ftc.teamcode.tests;
-import androidx.annotation.NonNull;
-import com.acmerobotics.dashboard.config.Config;
-import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
-import com.acmerobotics.roadrunner.Action;
+package com.example.meepmeeptesting;
+
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.Vector2d;
-import com.acmerobotics.roadrunner.ftc.Actions;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import org.firstinspires.ftc.teamcode.roadrunner.MecanumDrive;
+import com.noahbres.meepmeep.MeepMeep;
+import com.noahbres.meepmeep.roadrunner.DefaultBotBuilder;
+import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-@Config
-@Autonomous(name = "Straight Test", group = "Autonomous")
-public class StraightTest extends LinearOpMode {
+public class MeepMeepTesting {
+    public static void main(String[] args) {
+        MeepMeep meepMeep = new MeepMeep(800);
 
-    @Override
-    public void runOpMode() {
-        MecanumDrive drive = new MecanumDrive(hardwareMap, new Pose2d(0, 0, Math.toRadians(90)));
+        RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
+                // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
+                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
+                .build();
 
-        Action trajectorySequence = drive.actionBuilder(drive.pose)
+        myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(0, 0, Math.toRadians(90)))
                 .strafeTo(new Vector2d(0, 48))
                 .strafeTo(new Vector2d(0, 0))
 
@@ -56,16 +52,12 @@ public class StraightTest extends LinearOpMode {
                 .strafeTo(new Vector2d(-24, 24 * Math.sqrt(3)))
                 .strafeTo(new Vector2d(0, 0))
 
-                .build();
+                .build());
 
-        waitForStart();
-
-        if (isStopRequested()) return;
-
-        Actions.runBlocking(
-                new SequentialAction(
-                        trajectorySequence
-                )
-        );
+        meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
+                .setDarkMode(true)
+                .setBackgroundAlpha(0.95f)
+                .addEntity(myBot)
+                .start();
     }
 }
